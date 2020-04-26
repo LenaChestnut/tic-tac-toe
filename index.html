@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-tac-toe</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Tic-tac-toe</h1>
+    </header>
+    
+    <main>
+        <div class="players-display">
+            <p class="player turn">Player X</p>
+            <p class="player">Player O</p>
+        </div>
+        <div id="gameboard">
+            <div class="cell top left">X</div>
+            <div class="cell top middle">O</div>
+            <div class="cell top right"></div>
+            <div class="cell center left"></div>
+            <div class="cell center middle"></div>
+            <div class="cell center right"></div>
+            <div class="cell bottom left"></div>
+            <div class="cell bottom middle"></div>
+            <div class="cell bottom right"></div>
+        </div>
+        <div class="settings-container">
+            <button class="settings" id="play">
+                <img src="./images/play.svg" alt="Play" >
+            </button>
+            <button class="settings" id="settings">
+                <img src="./images/settings.svg" alt="Settings" >
+            </button>
+            <button class="settings" id="restart">
+                <img src="./images/refresh-cw.svg" alt="Restart" >
+            </button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

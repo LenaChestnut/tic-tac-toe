@@ -1,0 +1,114 @@
+body {
+    background: url(https://raw.github.com/mmoustafa/Chalkboard/master/img/bg.png);
+    color: white;
+    font-family: 'Amatic SC', 'Arial', sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.players-display {
+    width: 90%;
+    display: inherit;
+    font-size: 2.3rem;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.player {
+    padding: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.turn {
+    border-bottom: 2px solid currentColor;
+    border-radius: 0px 0px 950px 70px/0px 0px 60px 40px;
+    color: rgb(146, 248, 255);
+}
+
+#gameboard {
+    display: grid;
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid white;
+    border-radius: 295px 7px 290px 7px/7px 290px 7px 295px;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    font-family: 'Architects Daughter', 'Arial', sans-serif;
+}
+
+.top, .center {
+    border-bottom: 1px solid white;
+}
+
+.left, .middle {
+    border-right: 1px solid white;
+}
+
+.settings {
+    margin: 0 0.4rem;
+}
+
+
+@media (min-width: 570px) {
+    .players-display {
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 950px) {
+    main {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .players-display {
+        flex-direction: column;
+        width: 150px;
+        align-items: flex-end;
+        padding: 0;
+        margin-right: 20px;
+    }
+
+    #gameboard {
+        flex: 2 1 auto;
+    }
+
+    .settings-container {
+        width: 150px;
+        margin: 0.2rem 0 0 17px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .settings {
+        margin-bottom: 1rem;
+    }
+}
