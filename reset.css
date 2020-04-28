@@ -20,6 +20,11 @@ fieldset, form, label, footer, header, main {
 footer, header, main {
 	display: block;
 }
+
+html {
+	min-width: 320px;
+}
+
 body {
 	line-height: 1;
 }

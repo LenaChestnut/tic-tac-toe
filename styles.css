@@ -1,5 +1,6 @@
 body {
-    background: url(https://raw.github.com/mmoustafa/Chalkboard/master/img/bg.png);
+    background: url(https://raw.github.com/mmoustafa/Chalkboard/master/img/bg.png),
+              rgb(34, 34, 34);
     color: white;
     font-family: 'Amatic SC', 'Arial', sans-serif;
 }
@@ -53,6 +54,7 @@ main {
     border-radius: 295px 7px 290px 7px/7px 290px 7px 295px;
     color: white;
     margin-bottom: 3rem;
+    position: relative;
 }
 
 .cell {
@@ -61,6 +63,10 @@ main {
     align-items: center;
     font-size: 5rem;
     font-family: 'Architects Daughter', 'Arial', sans-serif;
+}
+
+.win {
+    background-color: rgba(255, 255, 255, 0.07);
 }
 
 .top, .center {
@@ -73,6 +79,16 @@ main {
 
 .settings {
     margin: 0 0.4rem;
+}
+
+.display-message {
+    font-size: 3.6rem;
+    position: absolute;
+    width: 200px;
+    top: 30%;
+    left: 50%;
+    margin-left: -100px;
+    text-align: center;
 }
 
 
