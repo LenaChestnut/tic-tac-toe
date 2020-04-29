@@ -38,7 +38,6 @@ main {
     border-bottom: 2px solid currentColor;
     border-radius: 0px 0px 950px 70px/0px 0px 60px 40px;
     color: rgb(98, 184, 255);
-    font-weight: 700;
 }
 
 #gameboard {

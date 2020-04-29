@@ -80,11 +80,15 @@ const playersFactory = (name, marker) => {
     const toggleActiveStyle = () => {
         display.classList.toggle("turn");
     }
+    const removeActiveStyle = () => {
+        display.classList.remove("turn")
+    };
 
     return {
         getName,
         getMarker,
         toggleActiveStyle,
+        removeActiveStyle,
     };
 };
 
@@ -95,6 +99,8 @@ const gameModule = (() => {
     let playerX = playersFactory("Player X", "X");
     let playerO = playersFactory("Player O", "O");
 
+    const arrPLayers = [playerX, playerO];
+
     let activePlayer = null;
     let gameStarted = null;
 
@@ -103,6 +109,8 @@ const gameModule = (() => {
         gameBoardModule.clearDisplay();
         gameBoardModule.renderGameBoard();
         setCellListeners();
+        arrPLayers.forEach((player) => player.removeActiveStyle());
+        playerO.removeActiveStyle();
         gameModule.activePlayer = playerX;
         gameModule.activePlayer.toggleActiveStyle();
     };
@@ -138,8 +146,7 @@ const gameModule = (() => {
         } else if (gameModule.activePlayer === playerO) {
             gameModule.activePlayer = playerX;
         }
-        playerX.toggleActiveStyle();
-        playerO.toggleActiveStyle();
+        arrPLayers.forEach((player) => player.toggleActiveStyle());
     };
 
     const isEmpty = (cell) => {
@@ -234,6 +241,18 @@ const gameModule = (() => {
             return true;
         }
     };
+
+    const startButton = document.querySelector("#play");
+    startButton.addEventListener("click", function() {
+        if (!gameStarted) {
+            startGame();
+        }
+    });
+
+    const refreshButton = document.querySelector("#restart");
+    refreshButton.addEventListener("click", function() {
+        startGame();
+    });
 
     return {
         playerX,
