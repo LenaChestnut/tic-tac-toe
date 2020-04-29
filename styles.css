@@ -32,6 +32,8 @@ main {
 .player {
     padding: 0.2rem;
     margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    border: 2px solid transparent;
 }
 
 .turn {
