@@ -41,18 +41,6 @@ const gameBoardModule = (() => {
     let displayMessage = document.createElement("p");
     displayMessage.classList.add("display-message");
 
-    // const displayGameResultMessage = () => {
-    //     gameBoardModule.clearDisplay();
-    //     displayMessage.textContent = `${gameModule.activePlayer.getName()} won!`;
-    //     gameBoardDisplay.appendChild(displayMessage);
-    // };
-
-    // const displayTieMessage = () => {
-    //     gameBoardModule.clearDisplay();
-    //     displayMessage.textContent = `It's a tie`;
-    //     gameBoardDisplay.appendChild(displayMessage);
-    // };
-
     const renderDisplayMessage = (outcome) => {
         gameBoardModule.clearDisplay();
         if (outcome === "win") {
@@ -89,10 +77,14 @@ const playersFactory = (name, marker) => {
 
     const getName = () => name;
     const getMarker = () => marker;
+    const toggleActiveStyle = () => {
+        display.classList.toggle("turn");
+    }
 
     return {
         getName,
         getMarker,
+        toggleActiveStyle,
     };
 };
 
@@ -112,6 +104,7 @@ const gameModule = (() => {
         gameBoardModule.renderGameBoard();
         setCellListeners();
         gameModule.activePlayer = playerX;
+        gameModule.activePlayer.toggleActiveStyle();
     };
 
     const setCellListeners = () => {
@@ -145,6 +138,8 @@ const gameModule = (() => {
         } else if (gameModule.activePlayer === playerO) {
             gameModule.activePlayer = playerX;
         }
+        playerX.toggleActiveStyle();
+        playerO.toggleActiveStyle();
     };
 
     const isEmpty = (cell) => {
