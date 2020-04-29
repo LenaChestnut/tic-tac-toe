@@ -274,3 +274,14 @@ const gameModule = (() => {
 
 // On-load for testing
 gameModule.startGame();
+
+const settingsModule = (() => {
+    const settingsButton = document.querySelector("#settings");
+    settingsButton.addEventListener('click', function() {
+
+    });
+
+    return {
+
+    };
+});

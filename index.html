@@ -10,11 +10,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="settings-menu">
+        <form name="settingsForm">
+            <p class="mode">Game Mode</p>
+            <input type="radio" name="mode" id="human" value="human" checked>
+            <label for="human">Play against a friend</label><br>
+            <input type="radio" name="mode" id="ai" value="ai">
+            <label for="ai">Play against AI</label>
+
+            <div class="mode-settings human-mode">
+                <p class="mode">Players</p>
+                <input type="text" id="player-x" name="player-x" placeholder="Player X" max="20">
+                <br>
+                <input type="text" id="player-o" name="player-o" placeholder="Player O" max="20">
+            </div>
+            <div class="button-container">
+                <button type="button" class="settings-btn" id="cancel">Cancel</button>
+                <button type="button" class="settings-btn" id="save">Save</button>
+            </div>
+        </form>
+    </div>
+
     <header>
         <h1>Tic-tac-toe</h1>
     </header>
-    
+
     <main>
+        
         <div class="players-display">
             <p class="player" id="X"></p>
             <p class="player" id="O"></p>
