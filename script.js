@@ -111,7 +111,7 @@ const gameModule = (() => {
     const startGame = () => {
         gameStarted = true;
         gameBoardModule.clearDisplay();
-        clearSound.play();
+
         gameBoardModule.renderGameBoard();
         setCellListeners();
         arrPLayers.forEach((player) => player.removeActiveStyle());
@@ -252,12 +252,15 @@ const gameModule = (() => {
     const startButton = document.querySelector("#play");
     startButton.addEventListener("click", function() {
         if (!gameStarted) {
+            clearSound.play();
             startGame();
         }
     });
 
     const refreshButton = document.querySelector("#restart");
     refreshButton.addEventListener("click", function() {
+        clearSound.currentTime = 0;
+        clearSound.play();
         startGame();
     });
 
@@ -270,4 +273,4 @@ const gameModule = (() => {
 })();
 
 // On-load for testing
-// gameModule.startGame();
+gameModule.startGame();
