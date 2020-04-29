@@ -41,11 +41,11 @@ const gameBoardModule = (() => {
     let displayMessage = document.createElement("p");
     displayMessage.classList.add("display-message");
 
-    const renderDisplayMessage = (outcome) => {
+    const renderDisplayMessage = (outcome = null) => {
         gameBoardModule.clearDisplay();
         if (outcome === "win") {
             displayMessage.textContent = `${gameModule.activePlayer.getName()} won!`;
-        } else {
+        } else if (outcome === "tie") {
             displayMessage.textContent = `It's a tie!`;
         }
         gameBoardDisplay.appendChild(displayMessage);
@@ -99,6 +99,10 @@ const gameModule = (() => {
     let playerX = playersFactory("Player X", "X");
     let playerO = playersFactory("Player O", "O");
 
+    const chalkSound = document.querySelector("#chalk");
+    chalkSound.volume = 0.1;
+    const clearSound = document.querySelector("#clear");
+
     const arrPLayers = [playerX, playerO];
 
     let activePlayer = null;
@@ -107,6 +111,7 @@ const gameModule = (() => {
     const startGame = () => {
         gameStarted = true;
         gameBoardModule.clearDisplay();
+        clearSound.play();
         gameBoardModule.renderGameBoard();
         setCellListeners();
         arrPLayers.forEach((player) => player.removeActiveStyle());
@@ -157,6 +162,8 @@ const gameModule = (() => {
 
     const markCell = (cell) => {
         cell.textContent = gameModule.activePlayer.getMarker();
+        chalkSound.currentTime = 0;
+        chalkSound.play();
     };
 
     const hasWon = (cellsArr, clickedCell) => {
@@ -263,4 +270,4 @@ const gameModule = (() => {
 })();
 
 // On-load for testing
-gameModule.startGame();
+// gameModule.startGame();
