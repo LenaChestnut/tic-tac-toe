@@ -275,13 +275,64 @@ const gameModule = (() => {
 // On-load for testing
 gameModule.startGame();
 
-const settingsModule = (() => {
-    const settingsButton = document.querySelector("#settings");
-    settingsButton.addEventListener('click', function() {
+// SETTINGS
 
+const settingsModule = (() => {
+
+    const settingsButton = document.querySelector("#settings");
+    const settingsMenu = document.querySelector(".settings-menu")
+    settingsButton.addEventListener('click', function() {
+        settingsMenu.classList.remove("hidden");
+    });
+
+    const cancelButton = document.querySelector("#cancel");
+    cancelButton.addEventListener('click', function() {
+        settingsMenu.classList.add("hidden");
+        clearFields();
+    });
+
+    const clearFields = () => {
+        document.getElementById("human").checked = true;
+        document.forms["settingsForm"]["player-x"].value = "";
+        document.forms["settingsForm"]["player-o"].value = "";
+    };
+
+    const aiSettings = document.querySelector(".ai-mode");
+    const humanSettings = document.querySelector(".human-mode");
+
+    const aiModeButton = document.getElementById("ai");
+    aiModeButton.addEventListener("change", function() {
+        if (aiModeButton.checked === true) {
+            aiSettings.classList.remove("hidden");
+            humanSettings.classList.add("hidden");
+        }
+    });
+
+    const humanModeButton = document.getElementById("human");
+    humanModeButton.addEventListener("change", function() {
+        if (humanModeButton.checked === true) {
+            humanSettings.classList.remove("hidden");
+            aiSettings.classList.add("hidden");
+        }
+    });
+
+    const aiPlayerX = document.querySelector(".ai-x");
+    const aiCheckboxX = document.querySelector("#ai-player-x");
+    aiPlayerX.addEventListener('focus', () => {
+        aiCheckboxX.checked = true;
+        aiPlayerX.setAttribute('placeholder', 'Player X');
+        aiPlayerO.setAttribute('placeholder', 'Mr. Robot');
+    });
+
+    const aiPlayerO = document.querySelector(".ai-o");
+    const aiCheckboxO = document.querySelector("#ai-player-o");
+    aiPlayerO.addEventListener('focus', () => {
+        aiCheckboxO.checked = true;
+        aiPlayerO.setAttribute('placeholder', 'Player O');
+        aiPlayerX.setAttribute('placeholder', 'Mr. Robot');
     });
 
     return {
 
     };
-});
+})();

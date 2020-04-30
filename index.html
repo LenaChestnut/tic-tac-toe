@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="settings-menu">
@@ -18,11 +19,26 @@
             <input type="radio" name="mode" id="ai" value="ai">
             <label for="ai">Play against AI</label>
 
-            <div class="mode-settings human-mode">
+            <div class="mode-settings human-mode hidden">
                 <p class="mode">Players</p>
-                <input type="text" id="player-x" name="player-x" placeholder="Player X" max="20">
+                <input type="text" id="human-player-x" name="player-x" placeholder="Player X" maxlength="20">
                 <br>
-                <input type="text" id="player-o" name="player-o" placeholder="Player O" max="20">
+                <input type="text" id="human-player-o" name="player-o" placeholder="Player O" maxlength="20">
+            </div>
+
+            <div class="mode-settings ai-mode">
+                <p class="mode">Players</p>
+                <input type="radio" name="player" id="ai-player-x" value="player-x" checked>
+                <label for="ai-player-x">
+                    <input class="ai-mode-input ai-x" type="text" name="player-x" placeholder="Player X" maxlength="20">
+                    <i class="fas fa-robot hidden"></i>
+                </label>
+                <br>
+                <input type="radio" name="player" id="ai-player-o" value="player-o">
+                <label for="ai-player-o">
+                    <input class="ai-mode-input ai-o" type="text" name="player-o" placeholder="Mr. Robot" maxlength="20">
+                    <i class="fas fa-robot"></i>
+                </label>
             </div>
             <div class="button-container">
                 <button type="button" class="settings-btn" id="cancel">Cancel</button>

@@ -135,7 +135,7 @@ label {
 input[type="radio"]:checked + label {
     color: var(--accent-color);
     border-bottom: 2px solid currentColor;
-    border-radius: 0px 0px 1300px 100px/390px 0px 40px 30px;;
+    border-radius: 0px 0px 1300px 100px/390px 0px 40px 30px;
 }
 
 input[type=radio] {
@@ -153,6 +153,33 @@ input[type=radio] {
     border: none;
     margin-right: 0.5rem;
     min-width: 70px;
+}
+
+.ai-mode label {
+    margin: 0.5rem 0 0 0;
+    position: relative;
+}
+
+.ai-mode label input {
+    margin: 0;
+}
+
+.ai-mode input[type="radio"]:checked + label {
+    border: none;
+}
+
+.ai-mode input[type="radio"]:checked + label .fa-robot {
+    display: none;
+}
+
+.fa-robot {
+    position: absolute;
+    color: rgb(34, 34, 34);
+    top: 50%;
+    margin-top: -0.8rem;
+    right: 0.5rem;
+    font-size: 1.6rem;
+    cursor: default;
 }
 
 input[type="text"] {
