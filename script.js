@@ -99,6 +99,8 @@ const gameModule = (() => {
     let playerX = playersFactory("Player X", "X");
     let playerO = playersFactory("Player O", "O");
 
+    const settings = document.forms["settingsForm"];
+
     const chalkSound = document.querySelector("#chalk");
     chalkSound.volume = 0.1;
     const clearSound = document.querySelector("#clear");
@@ -111,20 +113,49 @@ const gameModule = (() => {
     const startGame = () => {
         gameStarted = true;
         gameBoardModule.clearDisplay();
-
         gameBoardModule.renderGameBoard();
         setCellListeners();
-        arrPLayers.forEach((player) => player.removeActiveStyle());
-        playerO.removeActiveStyle();
+        arrPLayers.forEach((player) => {
+            player.removeActiveStyle();
+        });
         gameModule.activePlayer = playerX;
         gameModule.activePlayer.toggleActiveStyle();
     };
+
+    const setGameInfo = () => {
+        const gameMode = settings["mode"].value;
+        let nameX;
+        let nameO;
+
+        if (gameMode === "human") {
+            nameX = settings["player-x"][0].value;
+            nameO = settings["player-o"][0].value;
+
+            if (!nameX) {
+                nameX = "Player X";
+            }
+    
+            if (!nameO) {
+                nameO = "Player O";
+            }
+        }
+        
+        playerX = playersFactory(nameX, "X");
+        playerO = playersFactory(nameO, "O");
+    
+    };
+
+    const saveButton = document.querySelector("#save");
+    saveButton.addEventListener('click', function() {
+        setGameInfo();
+        document.querySelector(".settings-menu").classList.add("hidden");
+        startGame();
+    });
 
     const setCellListeners = () => {
         const cells = Array.from(document.querySelectorAll(".cell"));
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener("click", function(e) {
-                // console.log(`${e.target.classList}`);
                 if (gameStarted) {
                     if (isEmpty(cells[i])) {
                         markCell(cells[i]);
@@ -288,14 +319,7 @@ const settingsModule = (() => {
     const cancelButton = document.querySelector("#cancel");
     cancelButton.addEventListener('click', function() {
         settingsMenu.classList.add("hidden");
-        clearFields();
     });
-
-    const clearFields = () => {
-        document.getElementById("human").checked = true;
-        document.forms["settingsForm"]["player-x"].value = "";
-        document.forms["settingsForm"]["player-o"].value = "";
-    };
 
     const aiSettings = document.querySelector(".ai-mode");
     const humanSettings = document.querySelector(".human-mode");
