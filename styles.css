@@ -180,6 +180,7 @@ input[type=radio] {
     right: 0.5rem;
     font-size: 1.6rem;
     cursor: default;
+    pointer-events: none;
 }
 
 input[type="text"] {

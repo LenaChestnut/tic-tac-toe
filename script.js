@@ -139,7 +139,20 @@ const gameModule = (() => {
                 nameO = "Player O";
             }
         }
-        
+
+        if (gameMode === "ai") {
+            nameX = settings["player-x"][1].value;
+            nameO = settings["player-o"][1].value;
+
+            if (!nameX) {
+                nameX = "Player X";
+            }
+    
+            if (!nameO) {
+                nameO = "Player O";
+            }
+        }
+
         playerX = playersFactory(nameX, "X");
         playerO = playersFactory(nameO, "O");
     
@@ -303,7 +316,6 @@ const gameModule = (() => {
     };
 })();
 
-// On-load for testing
 gameModule.startGame();
 
 // SETTINGS
@@ -319,6 +331,7 @@ const settingsModule = (() => {
     const cancelButton = document.querySelector("#cancel");
     cancelButton.addEventListener('click', function() {
         settingsMenu.classList.add("hidden");
+        settingsMenu.reset();
     });
 
     const aiSettings = document.querySelector(".ai-mode");
