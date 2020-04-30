@@ -328,12 +328,6 @@ const settingsModule = (() => {
         settingsMenu.classList.remove("hidden");
     });
 
-    const cancelButton = document.querySelector("#cancel");
-    cancelButton.addEventListener('click', function() {
-        settingsMenu.classList.add("hidden");
-        settingsMenu.reset();
-    });
-
     const aiSettings = document.querySelector(".ai-mode");
     const humanSettings = document.querySelector(".human-mode");
 
@@ -367,6 +361,14 @@ const settingsModule = (() => {
         aiCheckboxO.checked = true;
         aiPlayerO.setAttribute('placeholder', 'Player O');
         aiPlayerX.setAttribute('placeholder', 'Mr. Robot');
+    });
+
+    const cancelButton = document.querySelector("#cancel");
+    cancelButton.addEventListener('click', function() {
+        settingsMenu.classList.add("hidden");
+        humanSettings.classList.remove("hidden");
+        aiSettings.classList.add("hidden");
+        settingsMenu.reset();
     });
 
     return {
