@@ -71,12 +71,14 @@ const gameBoardModule = (() => {
 
 //PLAYERS
 
-const playersFactory = (name, marker) => {
+const playersFactory = (name, marker, type) => {
     const display = document.getElementById(marker);
     display.textContent = name;
 
     const getName = () => name;
     const getMarker = () => marker;
+    const isHuman = () => type;
+
     const toggleActiveStyle = () => {
         display.classList.toggle("turn");
     }
@@ -87,6 +89,7 @@ const playersFactory = (name, marker) => {
     return {
         getName,
         getMarker,
+        isHuman,
         toggleActiveStyle,
         removeActiveStyle,
     };
@@ -96,8 +99,8 @@ const playersFactory = (name, marker) => {
 
 const gameModule = (() => {
 
-    let playerX = playersFactory("Player X", "X");
-    let playerO = playersFactory("Player O", "O");
+    let playerX = playersFactory("Player X", "X", true);
+    let playerO = playersFactory("Player O", "O", true);
 
     const settings = document.forms["settingsForm"];
 
@@ -125,7 +128,9 @@ const gameModule = (() => {
     const setGameInfo = () => {
         const gameMode = settings["mode"].value;
         let nameX;
+        let playerXType;
         let nameO;
+        let playerOType;
 
         if (gameMode === "human") {
             nameX = settings["player-x"][0].value;
@@ -138,9 +143,14 @@ const gameModule = (() => {
             if (!nameO) {
                 nameO = "Player O";
             }
+
+            playerXType = true;
+            playerOType = true;
         }
 
         if (gameMode === "ai") {
+            alert(settings["player"].value);
+
             nameX = settings["player-x"][1].value;
             nameO = settings["player-o"][1].value;
 
@@ -151,10 +161,12 @@ const gameModule = (() => {
             if (!nameO) {
                 nameO = "Player O";
             }
+
+            // playerType
         }
 
-        playerX = playersFactory(nameX, "X");
-        playerO = playersFactory(nameO, "O");
+        playerX = playersFactory(nameX, "X", playerXType);
+        playerO = playersFactory(nameO, "O", playerOType);
     
     };
 
@@ -308,20 +320,6 @@ const gameModule = (() => {
         startGame();
     });
 
-    return {
-        playerX,
-        playerO,
-        activePlayer,
-        startGame,
-    };
-})();
-
-gameModule.startGame();
-
-// SETTINGS
-
-const settingsModule = (() => {
-
     const settingsButton = document.querySelector("#settings");
     const settingsMenu = document.querySelector(".settings-menu")
     settingsButton.addEventListener('click', function() {
@@ -347,20 +345,22 @@ const settingsModule = (() => {
         }
     });
 
+    const setAiPlayer = (selectedPlayer, marker, otherPlayer, input) => {
+        input.checked = true;
+        selectedPlayer.setAttribute('placeholder', `Player ${marker}`);
+        otherPlayer.setAttribute('placeholder', 'Mr. Robot');
+    };
+
     const aiPlayerX = document.querySelector(".ai-x");
     const aiCheckboxX = document.querySelector("#ai-player-x");
     aiPlayerX.addEventListener('focus', () => {
-        aiCheckboxX.checked = true;
-        aiPlayerX.setAttribute('placeholder', 'Player X');
-        aiPlayerO.setAttribute('placeholder', 'Mr. Robot');
+        setAiPlayer(aiPlayerX, "X", aiPlayerO, aiCheckboxX);
     });
 
     const aiPlayerO = document.querySelector(".ai-o");
     const aiCheckboxO = document.querySelector("#ai-player-o");
     aiPlayerO.addEventListener('focus', () => {
-        aiCheckboxO.checked = true;
-        aiPlayerO.setAttribute('placeholder', 'Player O');
-        aiPlayerX.setAttribute('placeholder', 'Mr. Robot');
+        setAiPlayer(aiPlayerO, "O", aiPlayerX, aiCheckboxO);
     });
 
     const cancelButton = document.querySelector("#cancel");
@@ -368,10 +368,17 @@ const settingsModule = (() => {
         settingsMenu.classList.add("hidden");
         humanSettings.classList.remove("hidden");
         aiSettings.classList.add("hidden");
-        settingsMenu.reset();
+        aiPlayerX.setAttribute('placeholder', 'Player X');
+        aiPlayerO.setAttribute('placeholder', 'Mr. Robot');
+        settings.reset();
     });
 
     return {
-
+        playerX,
+        playerO,
+        activePlayer,
+        startGame,
     };
 })();
+
+gameModule.startGame();
