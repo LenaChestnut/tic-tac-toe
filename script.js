@@ -81,9 +81,9 @@ const playersFactory = (name, marker, type) => {
 
     const toggleActiveStyle = () => {
         display.classList.toggle("turn");
-    }
+    };
     const removeActiveStyle = () => {
-        display.classList.remove("turn")
+        display.classList.remove("turn");
     };
 
     return {
@@ -108,22 +108,10 @@ const gameModule = (() => {
     chalkSound.volume = 0.1;
     const clearSound = document.querySelector("#clear");
 
-    const arrPLayers = [playerX, playerO];
+    const arrPlayers = [playerX, playerO];
 
     let activePlayer = null;
     let gameStarted = null;
-
-    const startGame = () => {
-        gameStarted = true;
-        gameBoardModule.clearDisplay();
-        gameBoardModule.renderGameBoard();
-        setCellListeners();
-        arrPLayers.forEach((player) => {
-            player.removeActiveStyle();
-        });
-        gameModule.activePlayer = playerX;
-        gameModule.activePlayer.toggleActiveStyle();
-    };
 
     const setGameInfo = () => {
         const gameMode = settings["mode"].value;
@@ -157,9 +145,28 @@ const gameModule = (() => {
             }
         }
 
-        playerX = playersFactory(nameX  = "Player X", "X", playerXType);
-        playerO = playersFactory(nameO = "Player O", "O", playerOType);
-    
+        if (nameX === "") {
+            nameX = "Player X";
+        }
+
+        if (nameO === "") {
+            nameO = "Player O";
+        } 
+
+        playerX = playersFactory(nameX, "X", playerXType);
+        playerO = playersFactory(nameO, "O", playerOType);
+    };
+
+    const startGame = () => {
+        gameStarted = true;
+        gameBoardModule.clearDisplay();
+        gameBoardModule.renderGameBoard();
+        setCellListeners();
+        arrPlayers.forEach((player) => {
+            player.removeActiveStyle();
+        });
+        gameModule.activePlayer = playerX;
+        gameModule.activePlayer.toggleActiveStyle();
     };
 
     const saveButton = document.querySelector("#save");
@@ -199,7 +206,7 @@ const gameModule = (() => {
         } else if (gameModule.activePlayer === playerO) {
             gameModule.activePlayer = playerX;
         }
-        arrPLayers.forEach((player) => player.toggleActiveStyle());
+        arrPlayers.forEach((player) => player.toggleActiveStyle());
     };
 
     const isEmpty = (cell) => {
