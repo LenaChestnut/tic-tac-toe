@@ -137,11 +137,11 @@ const gameModule = (() => {
             if (humanPlayer === "player-x") {
                 playerXType = true;
                 playerOType = false;
-                nameO = "Mr. Robot";
+                nameO = "AI";
             } else {
                 playerXType = false;
                 playerOType = true;
-                nameX = "Mr. Robot";
+                nameX = "AI";
             }
         }
 
@@ -192,7 +192,7 @@ const gameModule = (() => {
                             gameStarted = false;
                             gameBoardModule.displayGameResult("tie");
                         } else {
-                            toggleTurn(cells);
+                            toggleTurn();
                         }
                     }    
                 }
@@ -207,6 +207,15 @@ const gameModule = (() => {
             gameModule.activePlayer = playerX;
         }
         arrPlayers.forEach((player) => player.toggleActiveStyle());
+
+        if (!gameModule.activePlayer.isHuman()) {
+
+            setTimeout(function() {
+                alert("AI turn!");
+                toggleTurn();
+            }, 200);
+            
+        }
     };
 
     const isEmpty = (cell) => {
@@ -347,7 +356,7 @@ const gameModule = (() => {
     const setAiPlayer = (selectedPlayer, marker, otherPlayer, input) => {
         input.checked = true;
         selectedPlayer.setAttribute('placeholder', `Player ${marker}`);
-        otherPlayer.setAttribute('placeholder', 'Mr. Robot');
+        otherPlayer.setAttribute('placeholder', 'AI');
     };
 
     const aiPlayerX = document.querySelector(".ai-x");
@@ -368,7 +377,7 @@ const gameModule = (() => {
         humanSettings.classList.remove("hidden");
         aiSettings.classList.add("hidden");
         aiPlayerX.setAttribute('placeholder', 'Player X');
-        aiPlayerO.setAttribute('placeholder', 'Mr. Robot');
+        aiPlayerO.setAttribute('placeholder', 'AI');
         settings.reset();
     });
 
