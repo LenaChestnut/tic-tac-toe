@@ -136,37 +136,29 @@ const gameModule = (() => {
             nameX = settings["player-x"][0].value;
             nameO = settings["player-o"][0].value;
 
-            if (!nameX) {
-                nameX = "Player X";
-            }
-    
-            if (!nameO) {
-                nameO = "Player O";
-            }
-
             playerXType = true;
             playerOType = true;
         }
 
         if (gameMode === "ai") {
-            alert(settings["player"].value);
+            const humanPlayer = settings["player"].value;
 
             nameX = settings["player-x"][1].value;
             nameO = settings["player-o"][1].value;
 
-            if (!nameX) {
-                nameX = "Player X";
+            if (humanPlayer === "player-x") {
+                playerXType = true;
+                playerOType = false;
+                nameO = "Mr. Robot";
+            } else {
+                playerXType = false;
+                playerOType = true;
+                nameX = "Mr. Robot";
             }
-    
-            if (!nameO) {
-                nameO = "Player O";
-            }
-
-            // playerType
         }
 
-        playerX = playersFactory(nameX, "X", playerXType);
-        playerO = playersFactory(nameO, "O", playerOType);
+        playerX = playersFactory(nameX  = "Player X", "X", playerXType);
+        playerO = playersFactory(nameO = "Player O", "O", playerOType);
     
     };
 
