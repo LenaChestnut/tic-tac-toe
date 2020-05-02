@@ -183,20 +183,33 @@ const gameModule = (() => {
                 if (gameStarted) {
                     if (isEmpty(cells[i])) {
                         markCell(cells[i]);
-                        if (hasWon(cells, cells[i])) {
-                            gameStarted = false;
-                            const winningComb = getWinningComb(cells[i], cells);
-                            gameBoardModule.displayGameResult("win", winningComb);
-                        } else if (isTie(cells)) {
-                            // alert("Tie");
-                            gameStarted = false;
-                            gameBoardModule.displayGameResult("tie");
-                        } else {
-                            toggleTurn();
-                        }
+                        roundEnd(cells, cells[i]);
+                        // if (hasWon(cells, cells[i])) {
+                        //     gameStarted = false;
+                        //     const winningComb = getWinningComb(cells[i], cells);
+                        //     gameBoardModule.displayGameResult("win", winningComb);
+                        // } else if (isTie(cells)) {
+                        //     gameStarted = false;
+                        //     gameBoardModule.displayGameResult("tie");
+                        // } else {
+                        //     toggleTurn();
+                        // }
                     }    
                 }
             });
+        }
+    };
+
+    const roundEnd = (grid, cell) => {
+        if (hasWon(grid, cell)) {
+            gameStarted = false;
+            const winningComb = getWinningComb(cell, grid);
+            gameBoardModule.displayGameResult("win", winningComb);
+        } else if (isTie(grid)) {
+            gameStarted = false;
+            gameBoardModule.displayGameResult("tie");
+        } else {
+            toggleTurn();
         }
     };
 
@@ -209,13 +222,34 @@ const gameModule = (() => {
         arrPlayers.forEach((player) => player.toggleActiveStyle());
 
         if (!gameModule.activePlayer.isHuman()) {
-
-            setTimeout(function() {
-                alert("AI turn!");
-                toggleTurn();
-            }, 200);
-            
+            makeAIMove();
         }
+    };
+
+    const makeAIMove = () => {
+        setTimeout(function() {
+            const allCells = Array.from(document.querySelectorAll(".cell"));
+            const emptyCells = allCells.filter(isEmpty);
+            const num = getRandom(emptyCells);
+            
+            markCell(emptyCells[num]);
+
+            roundEnd(allCells, emptyCells[num]);
+            // if (hasWon(allCells, emptyCells[num])) {
+            //     gameStarted = false;
+            //     const winningComb = getWinningComb(emptyCells[num], allCells);
+            //     gameBoardModule.displayGameResult("win", winningComb);
+            // } else if (isTie(allCells)) {
+            //     gameStarted = false;
+            //     gameBoardModule.displayGameResult("tie");
+            // } else {
+            //     toggleTurn();
+            // }
+        }, 600);
+    };
+
+    const getRandom = (arr) => {
+        return Math.floor(Math.random() * arr.length);
     };
 
     const isEmpty = (cell) => {
