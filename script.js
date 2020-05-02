@@ -167,6 +167,9 @@ const gameModule = (() => {
         });
         gameModule.activePlayer = playerX;
         gameModule.activePlayer.toggleActiveStyle();
+        if (!gameModule.activePlayer.isHuman()) {
+            makeAIMove();
+        }
     };
 
     const saveButton = document.querySelector("#save");
@@ -184,16 +187,6 @@ const gameModule = (() => {
                     if (isEmpty(cells[i])) {
                         markCell(cells[i]);
                         roundEnd(cells, cells[i]);
-                        // if (hasWon(cells, cells[i])) {
-                        //     gameStarted = false;
-                        //     const winningComb = getWinningComb(cells[i], cells);
-                        //     gameBoardModule.displayGameResult("win", winningComb);
-                        // } else if (isTie(cells)) {
-                        //     gameStarted = false;
-                        //     gameBoardModule.displayGameResult("tie");
-                        // } else {
-                        //     toggleTurn();
-                        // }
                     }    
                 }
             });
@@ -235,17 +228,7 @@ const gameModule = (() => {
             markCell(emptyCells[num]);
 
             roundEnd(allCells, emptyCells[num]);
-            // if (hasWon(allCells, emptyCells[num])) {
-            //     gameStarted = false;
-            //     const winningComb = getWinningComb(emptyCells[num], allCells);
-            //     gameBoardModule.displayGameResult("win", winningComb);
-            // } else if (isTie(allCells)) {
-            //     gameStarted = false;
-            //     gameBoardModule.displayGameResult("tie");
-            // } else {
-            //     toggleTurn();
-            // }
-        }, 600);
+        }, 200);
     };
 
     const getRandom = (arr) => {
