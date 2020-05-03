@@ -226,10 +226,27 @@ const gameModule = (() => {
     const makeAIMove = () => {
         setTimeout(function() {
             const allCells = Array.from(document.querySelectorAll(".cell"));
-            let bestSpot = getBestSpot(allCells);
-            markCell(bestSpot);
 
-            endRound(allCells, bestSpot);
+            emptySpots = allCells.filter(isEmpty);
+
+            if (emptySpots.length === 9) {
+                let index = Math.floor(Math.random() * 9);
+                markCell(allCells[index]);
+                endRound(allCells, allCells[index]);
+            } else if (emptySpots.length === 8) {
+                let index;
+                if (allCells[4].textContent === "") {
+                    index = 4;
+                } else {
+                    index = Math.floor(Math.random() * 8);
+                }
+                markCell(allCells[index]);
+                endRound(allCells, allCells[index]);
+            } else {
+                let bestSpot = getBestSpot(allCells);
+                markCell(bestSpot);
+                endRound(allCells, bestSpot);
+            }
         }, 250);
     };
 
