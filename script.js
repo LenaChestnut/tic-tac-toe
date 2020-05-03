@@ -322,7 +322,7 @@ const gameModule = (() => {
             return checkResult;
         };
 
-        if (checkWin(currentRow, clickedCell) || checkWin(currentColumn, clickedCell) || checkWin(d1, clickedCell) || checkWin(currentRow, clickedCell)) {
+        if (checkWin(currentRow, clickedCell) || checkWin(currentColumn, clickedCell) || checkWin(d1, clickedCell) || checkWin(d2, clickedCell)) {
             return true;
         }
         return false;
