@@ -254,6 +254,12 @@ button:hover, button:focus {
 	animation: wiggle 0.5s infinite;
 }
 
+@media (max-width: 400px) {
+    header {
+        padding: 1rem 2rem;
+    }
+}
+
 @media (min-width: 570px) {
     .players-display {
         max-width: 500px;
