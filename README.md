@@ -25,7 +25,7 @@ I wanted the app to have a hand-drawn look but a grid with perfectly straight li
 ```css
 border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 ```
-That's where I also found out that you can **change elements' dimensions in DevTools using scroll wheel** like you would do in Adobe programs. You can also press Shift so the step is 10px for every scroll.
+That's where I also found out that you can **change elements' dimensions in DevTools using scroll wheel** like you would do in Adobe programs to check what would look better. You can also press Shift so the step is 10px for every time you scroll.
 
 ### Maintaining square shape of the grid cells
 I've found a number of kind of hacky solutions for this which used pseudo-elements, negative padding/margin dimensions, calculations with 33.33% of the width of the container. Eventually, I had an idea to use dimensions measured in vw for both width AND height of the grid-container. That way both dimensions would be calculated based on the same value of the width of the screen. Setting rows and columns to take 1fr of the parent allows them to remain of the same size. And setting max-width and max-heigth ensures that the grid isn't too big on wide screens.
