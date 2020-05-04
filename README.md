@@ -59,7 +59,7 @@ input[type="radio"]:focus + label {
 }
 ```
 ### Animation
-Button and active player animation based on [this article](https://harrybailey.com/2011/09/css3-element-wiggle-with-keyframes/) by Harry Bailey. I've added additional percent stops so it looke more like stop-motion.
+Button and active player animation based on [this article](https://harrybailey.com/2011/09/css3-element-wiggle-with-keyframes/) by Harry Bailey. I've added additional percent stops so it looks more like stop-motion.
 ```css
 @keyframes wiggle {
 	0% {
