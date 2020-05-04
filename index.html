@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="settings-menu hidden">
-        <form name="settingsForm">
+        <form name="settingsForm" onsubmit="return false">
             <p class="mode">Game Mode</p>
             <input type="radio" name="mode" id="human" value="human" checked>
             <label for="human">Play against a friend</label><br>
@@ -47,7 +47,7 @@
             </div>
             <div class="button-container">
                 <button type="reset" class="settings-btn" id="cancel">Cancel</button>
-                <button type="button" class="settings-btn" id="save">Save</button>
+                <button type="submit" class="settings-btn" id="save">Save</button>
             </div>
         </form>
     </div>
