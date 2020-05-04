@@ -92,7 +92,7 @@ Looking back, I've made the logic pretty overcomplicated. After I wrote it, I've
 I built my minimax logic based on [this tutorial](https://www.youtube.com/watch?v=P2TcQ3h0ipQ) by FreeCodeCamp. Had to change some things because of differences in the code but got it working eventually.
 
 #### First moves by AI
-After I got minimax working I've run into a problem where whenever AI was the first player, it would take a really long time (about half a minute) to make a move. To solve this, I've added a conditional statement to check if the board was empty and if it was, the AI would make a random move.
+After I got minimax working I've run into a problem where whenever AI was the first player, it would take a really long time (about half a minute) to make the first move. To solve this, I've added a conditional statement to check if the board was empty and if it was, the AI would make a random move.
 
 #### Second move by AI
 A similar problem with delay (about 4 seconds) occurs when the AI goes second. It takes a few more seconds for computer to make its first move of the game than in later turns. I wanted it to go for the middle square or, if it was taken, make a random move. However, it caused minimax algorithm to not always work on later turns. If the middle square was taken, it would first make a random move and its next move would always be in the top left corner (if it wasn't occupied already) regardless of wether it would lead to human player winning or not. I decided to comment it out for now and leave it as is.
