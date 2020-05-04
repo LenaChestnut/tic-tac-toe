@@ -40,10 +40,31 @@ main {
     border: 2px solid transparent;
 }
 
+@keyframes player-wiggle {
+	0% {
+        transform: rotate(1deg);
+    }
+    49% {
+        transform: rotate(1deg);
+    }
+	50% {
+        transform: rotate(-1deg);
+    }
+    99% {
+        transform: rotate(-1deg);
+    }
+	100% {
+        transform: rotate(1deg);
+    }
+}
+
 .turn {
     border-bottom: 2px solid currentColor;
     border-radius: 0px 0px 950px 70px/0px 0px 60px 40px;
     color: var(--accent-color);
+    --webkit-animation: player-wiggle 0.5s infinite;
+	--moz-animation: player-wiggle 0.5s infinite;
+	animation: player-wiggle 0.5s infinite;
 }
 
 #gameboard {
@@ -209,6 +230,29 @@ input[type="text"] {
     cursor: pointer;
 }
 
+@keyframes wiggle {
+	0% {
+        transform: rotate(5deg);
+    }
+    49% {
+        transform: rotate(5deg);
+    }
+	50% {
+        transform: rotate(-5deg);
+    }
+    99% {
+        transform: rotate(-5deg);
+    }
+	100% {
+        transform: rotate(5deg);
+    }
+}
+
+button:hover, button:focus {
+	--webkit-animation: wiggle 0.5s infinite;
+	--moz-animation: wiggle 0.5s infinite;
+	animation: wiggle 0.5s infinite;
+}
 
 @media (min-width: 570px) {
     .players-display {
