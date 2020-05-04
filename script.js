@@ -234,16 +234,16 @@ const gameModule = (() => {
                 markCell(allCells[index]);
                 endRound(allCells, allCells[index]);
             }
-            else if (emptySpots.length === 8) {
-                let index;
-                if (allCells[4].textContent === "") {
-                    index = 4;
-                } else {
-                    index = 0;
-                }
-                markCell(allCells[index]);
-                endRound(allCells, allCells[index]);
-            } 
+//             else if (emptySpots.length === 8) {
+//                 let index;
+//                 if (allCells[4].textContent === "") {
+//                     index = 4;
+//                 } else {
+//                     index = 0;
+//                 }
+//                 markCell(allCells[index]);
+//                 endRound(allCells, allCells[index]);
+//             } 
             else {
                 let bestSpot = getBestSpot(allCells);
                 markCell(bestSpot);
