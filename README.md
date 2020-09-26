@@ -1,13 +1,12 @@
 # TIC-TAC-TOE
 
 Tic Tac Toe game built with JS, HTML and CSS (practice project).
-[Link to project description](https://www.theodinproject.com/lessons/tic-tac-toe-javascript).
 
 [Link to live demo](https://lenachestnut.github.io/tic-tac-toe/)
 
 ## Objective
 
-Build a tic-tac-toe game with JavaScript module pattern and factory functions.
+Build a tic-tac-toe game with JavaScript module pattern and factory functions. [Project description](https://www.theodinproject.com/lessons/tic-tac-toe-javascript).
 
 1. The app should keep track of the players' turns.
 2. The app should be able to track if the game ended when someone wins or when there are no more empty spaces.
